@@ -4,9 +4,9 @@ import Vue from 'vue'
 import App from './App'
 
 Vue.config.productionTip = false
-// var initDom = document.createElement("div");
-// initDom.id = "app";
-// document.getElementsByTagName("body")[0].appendChild(initDom);
+var initDom = document.createElement("div");
+initDom.id = "app";
+document.getElementsByTagName("body")[0].appendChild(initDom);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
