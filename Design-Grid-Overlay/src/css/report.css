@@ -1,0 +1,55 @@
+/*
+  All CSS Attributes here are marked as important to force
+  the override of existing CSS styling from the page into which we are
+  injecting our overlay
+*/
+
+#grid-report-size-fullpage-overlay {
+  position: absolute;
+  top: 0px !important;
+  left: 0px !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 10000000 !important;
+  -webkit-user-select: none !important;
+  pointer-events: none !important;
+  line-height: 1 !important;
+}
+
+.grid-report-size-overlay-element {
+  line-height: 1 !important;
+  top: 0 !important;
+  left: 0 !important;
+  position: absolute !important;
+  font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,Roboto,sans-serif !important;
+  font-size: 12px !important;
+  font-style: normal !important;
+  border-top: solid 2px rgb(255, 0, 9);
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: right !important;
+  white-space: nowrap;
+}
+
+
+.grid-report-size-overlay-element .grid-report-size-overlay-span {
+  line-height: 1 !important;
+  display: inline !important;
+  padding: 0px 4px 3px 4px !important;
+  margin: 0 !important;
+  font-family: "Helvetica Neue","Segoe UI",Helvetica,Arial,Roboto,sans-serif !important;
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  pointer-events: none !important;
+  -webkit-user-select: none !important;
+  color: #ffffff;
+  background: rgb(255, 0, 9);
+  border-radius: 0 0 4px 4px;
+  box-sizing: content-box !important;
+  float: initial !important;
+}

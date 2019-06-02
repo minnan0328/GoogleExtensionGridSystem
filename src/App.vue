@@ -41,7 +41,13 @@ export default {
     chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       console.log(message, sender, sendResponse)
       _this.switchView.call(_this, function(){
-        sendResponse("操作完成")
+        sendResponse("操作完成Button1")
+      });
+    });
+    chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+      console.log(message, sender, sendResponse)
+      _this.switchView.call(_this, function(){
+        sendResponse("操作完成Button2")
       });
     });
 

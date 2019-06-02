@@ -1,0 +1,361 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 600px; /*Max height of chrome extension pop-up window */
+  width: 250px;
+  margin: 0;
+}
+
+header {
+  padding: 0 8px;
+}
+
+label {
+  color: #555;
+
+}
+
+fieldset {
+  padding: 8px;
+}
+
+legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  font-size: 13px;
+  position: relative;
+  padding: 0 0 5px;
+  line-height: 1;
+}
+
+h3 {
+  margin: 5px 0 0 0;
+  font-weight: 500;
+  font-size: 12px;
+  color: #555;
+}
+
+.switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.switch > label {
+  padding: .875rem 0;
+  font-weight: bold;
+  flex: 1;
+}
+.switch > label > span {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.switch > input {
+  position: absolute;
+  flex: 2;
+  z-index: 5;
+  width: 2.8rem;
+  height: 1.5rem;
+  padding: 0;
+  margin: .625rem 0.6rem .625rem 0;
+  cursor: pointer;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+.switch > input + span {
+  position: relative;
+  display: block;
+  width: 2.5rem;
+  height: 1.5rem;
+  margin: .625rem;
+  color: transparent;
+  text-indent: 100%;
+  cursor: pointer;
+  background: #B9B8B8 none repeat scroll 0 0;
+  border-radius: 25rem;
+  transition: left 0.15s ease-out 0s;
+}
+
+.switch > input:checked {
+  margin-left: 0.75rem;
+}
+
+.switch input:checked + span {
+  background: #0554BA none repeat scroll 0 0;
+}
+
+.switch > input + span::after {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 50%;
+  content: "";
+  transform: translate3d(0, 0, 0);
+  transition: left 0.15s ease-out 0s;
+}
+
+.switch input:checked + span::after {
+  left: 1.25rem;
+}
+
+#tabContainer {
+  margin: 0 8px;
+}
+
+#gridsettings {
+  background-color: #f0eeec;
+  padding: 12px 8px 0 8px;
+  flex-grow: 1;
+  -webkit-user-select: none;
+}
+
+input[type=number],
+input[type=text] {
+  border-radius: 3px;
+  color: rgb(85, 85, 85);
+  border: 1px solid #d3d3d3;
+  width: 100%;
+  padding: 3px 0 3px 5px;
+}
+
+input[type=number].fillCol {
+  flex-grow: 1;
+}
+
+#gridsettings input:focus {
+  border-color: #0654BA;
+  outline: 0 none;
+}
+
+fieldset {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+#gridForm fieldset:last-of-type {
+  border-bottom: 0;
+}
+
+input[type=button],
+input[type=reset] {
+  width: 100%;
+  display: block;
+  font-size: 14px;
+  padding: 8px 0;
+  margin: 0 auto 8px;
+  border-width: 1px;
+  color: rgb(6, 84, 186);
+  border-color: rgb(204, 204, 204);
+  border-style: solid;
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+input[type=reset] {
+  margin-top: 8px;
+  color: #555555;
+  border: 1px solid #999999;
+  background-color: rgba(240, 238, 236, 1);
+}
+
+.gridsettings__columns div,
+.gridsettings__gutters div,
+#otherSettings div {
+  display: flex;
+  width: 50%;
+  float: left;
+}
+
+#gridForm label {
+  margin: 4px 5px 0 0;
+}
+#gridForm fieldset, #advancedForm fieldset {
+  margin-top: 6px;
+}
+#gridForm fieldset:first-child, #advancedForm fieldset:first-child {
+  margin-top: 0;
+}
+#advancedForm .advancedForm-checkbox-wrapper {
+  margin-top: 15px;
+}
+
+#activate-extension-wrapper {
+  padding-left: 4px;
+  color: #555;
+}
+
+.gridsettings__columns label, .gridsettings__gutters label {
+
+  width: 32px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.gridsettings__columns div:nth-of-type(odd),
+#otherSettings div:nth-of-type(odd) {
+  padding: 0 8px 0 0;
+}
+
+.gridsettings__gutters div:nth-of-type(odd) {
+  padding: 0 8px 0 0;
+}
+
+.tooltip {
+  display: inline;
+  position: relative;
+}
+
+.tooltip:hover:after {
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 3px 3px 3px 3px;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.35);
+  bottom: 26px;
+  color: #333333;
+  content: attr(info);
+  left: 10%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 150px;
+}
+
+.tooltip:hover:before {
+  border: solid;
+  border-color: #fff transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 21px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
+}
+
+.tabs {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs > div:last-child {
+  padding: 0;
+}
+
+.tabs div[role=tablist] {
+  margin-bottom: 16px;
+}
+
+.tabs div[role=tab] > span {
+  padding: .75rem 0 0.45rem;
+  color: #999999;
+}
+
+.tabs div[role=tab]:focus {
+  outline: 0;
+  z-index: 10;
+  /*border: 1px solid rgba(6,84,186,.5);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;*/
+}
+
+.reset {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 16px);
+}
+
+#github-icon {
+  display: flex;
+  text-align: center;
+  text-decoration: inherit;
+  margin: 14px auto;
+  width: 120px;
+}
+
+#github-icon img {
+  align-self: center;
+  margin-right: 10px;
+}
+
+.reportContainer {
+  padding: 0 8px 0 8px;
+  height: 280px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+#reportForm {
+  margin-bottom: 8px;
+}
+
+#reportForm label {
+  margin: 4px 0 0 0;
+}
+
+table {
+  text-align: left;
+  font-size: 100%;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+tr:last-of-type {
+  border-bottom: none;
+}
+
+td, th {
+  padding: 4px;
+}
+
+th {
+  font-weight: 400;
+}
+
+.table-right {
+  text-align: right;
+  padding-right: 40%;
+}
+
+#screenSizes label {
+  width: 100%;
+  display: inline-block;
+}
+
+#screenSizes input {
+  width: calc(50% - 8px);
+}
+
+#reportForm input[type="text"] {
+  width: 100%;
+}
+
+.overlaySettingsCheckboxes {
+  margin-bottom: 8px;
+
+}

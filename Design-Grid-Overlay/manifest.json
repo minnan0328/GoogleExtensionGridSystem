@@ -1,0 +1,52 @@
+{
+  "manifest_version": 2,
+  "name": "Design Grid Overlay",
+  "short_name": "Design Grid",
+  "description": "This extension displays grid and measurement overlays for a design grid system.  It is configurable to fit many design scenarios",
+  "version": "1.0.1",
+  "icons": { "16": "icons/Logo16.png",
+           "48": "icons/Logo48.png",
+          "128": "icons/Logo128.png" },
+  "browser_action": {
+    "default_popup": "src/popup.html"
+  },
+  "background": {
+    "scripts": ["src/executedScripts/background.js"],
+    "persistent": false
+  },
+  "web_accessible_resources": [
+      "src/css/grid.css",
+      "src/css/report.css"
+  ],
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "file://*/*",
+    "storage",
+    "activeTab"
+  ],
+  "commands": {
+    "toggle-columns": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      },
+      "description": "Toggle columns"
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
+      },
+      "description": "Activate the extension"
+    },
+    "toggle-lines": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "Command+Shift+H"
+      },
+      "description": "Toggle lines"
+    }
+  }
+}
