@@ -1,0 +1,43 @@
+.Grid-Layout
+    width: 100vw
+    height: 100vh
+    display: flex
+    position: fixed
+    justify-content: center
+    top: 0
+    left: 0
+    margin: 0
+    z-index: 16777271
+    .Grid-Container
+        display: flex
+        justify-content: center
+        width: 100%
+        .Grid-row
+            display: grid
+            grid-template-columns: repeat(12, 1fr)
+            height: 100vh
+            width: 940px
+            margin: 0 auto
+            padding: 0 10px
+            grid-gap: 20px
+            position: fixed
+            .Grid-columns
+                border: 1px dashed rgba(0,0,0,0.5)
+
+@media (max-width: 768px)
+    .Grid-Layout
+        .Grid-Container
+            .Grid-row
+                width: 764px
+                margin: 0 auto
+                padding: 0 2px
+                grid-gap: 4px
+
+@media (max-width: 320px)
+    .grid-box
+        .Grid-Container
+            .Grid-row
+                width: 315px
+                margin: 0 auto
+                padding: 0 2.5px
+                grid-gap: 5px

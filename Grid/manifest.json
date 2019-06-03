@@ -1,0 +1,22 @@
+{
+	"manifest_version" : 2,
+	"name" : "grid",
+	"description" : "",
+	"version" : "1.0",
+    "browser_action": {
+        "default_title": "",
+        "default_icon": "/static/img/icon.png",
+        "default_popup": "index.html"
+	},
+	"web_accessible_resources": [
+	"static/css/grid.css"
+	],
+	"permissions": [
+	"tabs",
+	"http://*/*",
+	"https://*/*",
+	"file://*/*",
+	"storage",
+	"activeTab"
+	]
+}
