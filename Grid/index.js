@@ -1,5 +1,5 @@
 var popup = (() =>{
-  var gridToggle = document.getElementById('gridToggle');
+  var SketchGrid = document.getElementById('SketchGrid');
   var currentChromeTabId = undefined;
   window.addEventListener('load', function () {
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
@@ -8,17 +8,16 @@ var popup = (() =>{
         popup.init();
     });
   });
-    gridToggle.addEventListener('click', function () {
-      console.log(currentChromeTabId)
-      gridController.updateGrid(currentChromeTabId);
+  SketchGrid.addEventListener('click', function () {
+    gridController.updateGrid(currentChromeTabId, {
+      type: "Sketch",
     });
-    var init = () => {
-      console.log("createGrid")
-      chrome.tabs.executeScript(currentChromeTabId, {
-        file: "/controllers/grid.js"
-      });
-    }
-    return {
-      init: init
-    }
+  });
+  var init = () => {
+    chrome.tabs.executeScript(currentChromeTabId, {file: "/controllers/grid.js"});
+    // chrome.tabs.executeScript(currentChromeTabId, {file: "/controllers/getGridSetting.js"});
+  }
+  return {
+    init: init
+  }
 })();

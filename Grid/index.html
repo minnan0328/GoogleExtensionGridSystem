@@ -8,10 +8,52 @@
 </head>
 
 <body>
-    <div id="">
-        <input id="gridToggle" type="checkbox" name="gridToggle" />
+    <div class="display-Layout">
+        <div class="item-checkbox">
+            <input id="SketchGrid" type="checkbox" name="SketchGrid" />
+        </div>
+        <div class="setting-layout-form">
+            <form id="girdForm" name="girdForm">
+                <div class="setting-columns-box">
+                    <h4>Columns</h4>
+                    <div>
+                        <label for="totalWidth">Total Width</label>
+                        <input type="number" id="totalWidth" class="totalWidth" value="">
+                    </div>
+                    <div>
+                        <label for="offset">Offset</label>
+                        <input type="number" id="offset" class="offset" value="">
+                    </div>
+                    <div>
+                        <label for="numberColumns">Number of Columns</label>
+                        <input type="number" id="numberColumns" class="numberColumns" value="">
+                    </div>
+                    <div>
+                        <label for="gutterWidth">Gutter Width</label>
+                        <input type="number" id="gutterWidth" class="gutterWidth" value="">
+                    </div>
+                    <div>
+                        <label for="columnWidth">Column Width</label>
+                        <input type="number" id="columnWidth" class="columnWidth" value="">
+                    </div>
+                </div>
+                <div class="screenBox">
+                    <h4>screen Sizes</h4>
+                    <div>
+                        <label for="availWidth">Width</label>
+                        <input type="number" id="availWidth" class="availWidth" value="">
+                    </div>
+                    <div>
+                        <label for="availHeight">Height</label>
+                        <input type="number" id="availHeight" class="availHeight" value="">
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
-    <script type=text/javascript src=./index.js></script>
-    <script type=text/javascript src=./controllers/gridControllers.js> </script>
+    <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript" src="./controllers/gridControllers.js"></script>
+    <script type="text/javascript" src="./controllers/CalculationGridSetting.js"></script>
 </body>
 </html>
