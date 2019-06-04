@@ -64,6 +64,7 @@
     var respond = ((gridStatus) =>{
         chrome.runtime.sendMessage({status: gridStatus});
     });
+    var isResize = false;
 
     function getGridType (request, sender, sendResponse){
         if (request.method === "getGridType") {
@@ -96,8 +97,12 @@
                 default:
                     payload.key = 'xl';
             }
-            sendResponse(payload)
+            sendResponse(payload);
         }
     }
     chrome.runtime.onMessage.addListener(getGridType);
+
+    window.addEventListener('resize',() => {
+        isResize = true;
+    },false);
 })();

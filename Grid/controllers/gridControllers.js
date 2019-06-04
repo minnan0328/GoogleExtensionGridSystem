@@ -1,4 +1,5 @@
 var gridController = (() => {
+    chrome.runtime.onMessage.addListener(updateGrid);
     var updateGrid = ((currentTabId, payload) => {
         var SketchGrid = document.getElementById('SketchGrid');
         if (SketchGrid.checked) {
@@ -10,8 +11,11 @@ var gridController = (() => {
     var getGridSetting = ((currentTabId, payload) => {
         chrome.tabs.sendMessage(currentTabId, {
             method: "getGridType",
+            type: payload.type,
             tabId: currentTabId
         }, (response) => {
+            console.log(response)
+            console.log(response.length)
             fetch(`./../static/data/${payload.type}.json`).then((res) => {
                 return res.json();
             }).then((result) => {
