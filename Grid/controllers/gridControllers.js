@@ -3,15 +3,10 @@ var gridController = (() => {
         var SketchGrid = document.getElementById('SketchGrid');
         if (SketchGrid.checked) {
             getGridSetting(currentTabId, payload)
-            // createGrid(currentTabId)
+        }else{
+            removeGrid(currentTabId)
         }
     });
-    var createGrid = ((currentTabId,) => {
-        chrome.tabs.sendMessage(currentTabId, {
-            method: "create",
-            tabId: currentTabId
-        });
-    })
     var getGridSetting = ((currentTabId, payload) => {
         chrome.tabs.sendMessage(currentTabId, {
             method: "getGridType",
@@ -24,16 +19,40 @@ var gridController = (() => {
                     ScreenAvailDPI: response.ScreenAvailDPI,
                     setting: result[payload.type][response.key]
                 }
-                CalculationGrid(currentTabId,GridData)
+                calculationGrid(currentTabId,GridData)
             }).catch((error) =>{
                 console.log(error)
             })
         });
     })
-    var CalculationGrid = ((currentTabId, GridData) => {
-        var CalculationResult = CalculationGridSetting.init(GridData)
-        console.log(CalculationResult)
+    var calculationGrid = ((currentTabId, GridData) => {
+        var calculationResult = calculationGridSetting.init(GridData)
+        createGrid(currentTabId,calculationResult)
+        createGridStyle(currentTabId,calculationResult)
     })
+    var createGrid = ((currentTabId,calculationResult) => {
+        respond(1);
+        chrome.tabs.sendMessage(currentTabId, {
+            method: "create",
+            tabId: currentTabId,
+            numColumns: calculationResult.numColumns
+        });
+    })
+    var createGridStyle = ((currentTabId,calculationResult)=>{
+        var GridCss = createGridCss.init(calculationResult)
+        chrome.tabs.sendMessage(currentTabId, {
+            method: "createCss",
+            css: GridCss
+        });
+    })
+    var removeGrid = ((currentTabId) =>{
+        respond(0);
+        chrome.tabs.sendMessage(currentTabId, {method: "destroy", tabId: currentTabId});
+        chrome.tabs.sendMessage(currentTabId, {method: "removeCSS", tabId: currentTabId});
+    })
+    var respond = ((gridStatus) => {
+        chrome.runtime.sendMessage({status: gridStatus});
+    });
     return {
         updateGrid: updateGrid
     }

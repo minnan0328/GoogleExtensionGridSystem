@@ -1,4 +1,4 @@
-var CalculationGridSetting = (()=>{
+var calculationGridSetting = (()=>{
     var init = ((GridData) => {
         let gridSetting = {
             availWidth : GridData.ScreenAvailDPI.availWidth,
@@ -6,7 +6,7 @@ var CalculationGridSetting = (()=>{
             gutterWidth : GridData.setting.gutterWidth,
             gutterOnOutside: GridData.setting.gutterWidth / 2,
             totalWidth: GridData.setting.totalWidth - GridData.setting.gutterWidth,
-            columns: GridData.setting.columns,
+            numColumns: GridData.setting.numColumns,
             columnWidth: GridData.setting.columnWidth,
             offset: GridData.setting.offset
         }
@@ -19,7 +19,7 @@ var CalculationGridSetting = (()=>{
         girdForm.elements.availHeight.value = gridSetting.availHeight
         girdForm.elements.totalWidth.value = gridSetting.totalWidth
         girdForm.elements.offset.value = gridSetting.offset
-        girdForm.elements.numberColumns.value = gridSetting.columns
+        girdForm.elements.numColumns.value = gridSetting.numColumns
         girdForm.elements.gutterWidth.value = gridSetting.gutterWidth
         girdForm.elements.columnWidth.value = gridSetting.columnWidth
     })

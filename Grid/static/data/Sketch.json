@@ -4,7 +4,7 @@
             "width":"1440",
             "totalWidth":"960",
             "offset":"240",
-            "columns":"12",
+            "numColumns":"12",
             "gutterWidth":"20",
             "columnWidth":"60"
         },
@@ -12,7 +12,7 @@
             "width": "1024",
             "totalWidth": "960",
             "offset": "32",
-            "columns": "12",
+            "numColumns": "12",
             "gutterWidth": "20",
             "columnWidth": "60"
         },
@@ -20,7 +20,7 @@
             "width": "768",
             "totalWidth": "768",
             "offset": "0",
-            "columns": "12",
+            "numColumns": "12",
             "gutterWidth": "4",
             "columnWidth": "60"
         },
@@ -28,7 +28,7 @@
             "width": "414",
             "totalWidth": "414",
             "offset": "0",
-            "columns": "12",
+            "numColumns": "12",
             "gutterWidth": "5",
             "columnWidth": "30"
         },
@@ -36,7 +36,7 @@
             "width": "375",
             "totalWidth": "375",
             "offset": "0",
-            "columns": "12",
+            "numColumns": "12",
             "gutterWidth": "5",
             "columnWidth": "20"
         },
@@ -44,7 +44,7 @@
             "width": "320",
             "totalWidth": "320",
             "offset": "0",
-            "columns": "12",
+            "numColumns": "12",
             "gutterWidth": "5",
             "columnWidth": "22"
         }
