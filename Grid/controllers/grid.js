@@ -1,9 +1,20 @@
 (() =>{
+    var requestData = [];
+    var resizeData = {};
+    var isResize = false;
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        requestData.push(request);
+    });
+    chrome.runtime.onMessage.addListener(createListener);
+    chrome.runtime.onMessage.addListener(addCSSListener);
+    chrome.runtime.onMessage.addListener(destroyListener);
+    chrome.runtime.onMessage.addListener(removeCSSListener);
+    chrome.runtime.onMessage.addListener(getGridType);
     function createListener(request, sender, sendResponse) {
         if (request.method === "create") {
             var numColumns = request.numColumns || 12;
             var div = document.createElement('div');
-            div.setAttribute("class", "Grid-Layout");
+            div.setAttribute("class", `${request.type}-Grid-Layout`);
             var output = '<div class="Grid-Container"> \
             <div class="Grid-row">';
             for (var i = 0; i < numColumns; i += 1) {
@@ -13,61 +24,36 @@
             </div>';
             div.innerHTML = output;
             document.body.appendChild(div);
-            respond(1);
+            SketchRespond(1);
         }
     }
-    chrome.runtime.onMessage.addListener(createListener);
-
     function addCSSListener(request, sender, sendResponse) {
         if (request.method == "createCss") {
-
             var customGridStyles = document.createElement('style');
-            customGridStyles.id = "create-grid-style";
+            customGridStyles.id = `${request.type}-grid-style`;
             customGridStyles.appendChild(document.createTextNode(
                 request.css
             ));
-
             document.head.appendChild(customGridStyles);
         }
     }
-    chrome.runtime.onMessage.addListener(addCSSListener);
-
     function destroyListener(request, sender, sendResponse) {
-        if (request.method == "destroy" && document.getElementsByClassName('Grid-Layout').length) {
-            document.body.removeChild(document.getElementsByClassName('Grid-Layout')[0]);
-            respond(0);
+        if (request.method == "destroy" && document.getElementsByClassName(`${request.type}-Grid-Layout`).length) {
+            document.body.removeChild(document.getElementsByClassName(`${request.type}-Grid-Layout`)[0]);
+            SketchRespond(0);
         }
     }
-    chrome.runtime.onMessage.addListener(destroyListener);
-    
     function removeCSSListener(request, sender, sendResponse) {
         if (request.method == "removeCSS") {
-            var customGridStyles = document.getElementById("create-grid-style");
+            var customGridStyles = document.getElementById(`${request.type}-grid-style`);
             if (customGridStyles) {
                 customGridStyles.parentNode.removeChild(customGridStyles);
             }
         }
     }
-    chrome.runtime.onMessage.addListener(removeCSSListener);
-    
-    // function toggleGridListener(request, sender, sendResponse) {
-    //     if (document.getElementsByClassName('Grid-Layout').length) {
-    //         request.method = 'destroy';
-    //         destroyListener(request, sender, sendResponse);
-    //     } else {
-    //         request.method = 'create';
-    //         createListener(request, sender, sendResponse);
-    //     }
-    // }
-    // chrome.runtime.onMessage.addListener(toggleGridListener);
-
-    var respond = ((gridStatus) =>{
-        chrome.runtime.sendMessage({status: gridStatus});
-    });
-    var isResize = false;
-
     function getGridType (request, sender, sendResponse){
         if (request.method === "getGridType") {
+            resizeData = request;
             var payload = {
                 ScreenAvailDPI: {
                    availWidth: window.screen.availWidth,
@@ -86,7 +72,7 @@
                     payload.key = 'md';
                     break;
                 case (payload.ScreenAvailDPI.availWidth >= 414):
-                    kpayload.keyey = 'sm';
+                    payload.key = 'sm';
                     break;
                 case (payload.ScreenAvailDPI.availWidth >= 375):
                     payload.key = 'xs';
@@ -100,9 +86,20 @@
             sendResponse(payload);
         }
     }
-    chrome.runtime.onMessage.addListener(getGridType);
-
-    window.addEventListener('resize',() => {
-        isResize = true;
-    },false);
+    var SketchRespond = (gridStatus) => {
+        chrome.runtime.sendMessage({
+            SketchStatus: gridStatus
+        });
+    };
+    // window.addEventListener('resize',() => {
+    //     isResize = true;
+    //     if (isResize){
+    //         console.log(resizeData)
+    //         chrome.runtime.sendMessage({
+    //             method: 'openResize',
+    //             type: resizeData.type,
+    //             tabId: resizeData.tabId
+    //         });
+    //     }
+    // },false);
 })();

@@ -17,17 +17,16 @@ var popup = (() =>{
     chrome.tabs.executeScript(currentChromeTabId, {file: "/controllers/grid.js"});
     chrome.tabs.executeScript(currentChromeTabId, {file: "/controllers/gridStatus.js"});
   }
-  chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (request.status !== undefined) {
-            if (request.status === 1 && SketchGrid.checked === false) {
-                console.log('Grid already enabled on page');
-                SketchGrid.checked = true;
-            } else if (request.status === 0 && SketchGrid.checked === true) {
-              SketchGrid.checked = false;
-            }
-        }
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.SketchStatus !== undefined) {
+      if (request.SketchStatus === 1 && SketchGrid.checked === false) {
+        SketchGrid.checked = true;
+        calculationGridSetting.girdFormValueSetting();
+      } else if (request.SketchStatus === 0 && SketchGrid.checked === true) {
+        SketchGrid.checked = false;
+      }
     }
+  }
 );
   return {
     init: init

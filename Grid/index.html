@@ -10,6 +10,7 @@
 <body>
     <div class="display-Layout">
         <div class="item-checkbox">
+            <label for="totalWidth">Sketch Layout</label>
             <input id="SketchGrid" type="checkbox" name="SketchGrid" />
         </div>
         <div class="setting-layout-form">
@@ -48,9 +49,19 @@
                         <input type="number" id="availHeight" class="availHeight" value="">
                     </div>
                 </div>
+                <div class="screenBox">
+                    <h4>Visuals</h4>
+                    <div>
+                        <label for="FillGrid">Fill Grid</label>
+                        <input type="checkbox" id="FillGrid" class="FillGrid">
+                    </div>
+                    <div>
+                        <label for="StrokeOutline">Stroke Outline</label>
+                        <input type="checkbox" id="StrokeOutline" class="StrokeOutline">
+                    </div>
+                </div>
             </form>
         </div>
-
     </div>
     <script type="text/javascript" src="./index.js"></script>
     <script type="text/javascript" src="./controllers/gridControllers.js"></script>
