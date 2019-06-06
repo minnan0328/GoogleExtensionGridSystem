@@ -1,0 +1,52 @@
+{
+    "Sketch":{
+        "xl":{
+            "width":"1440",
+            "totalWidth":"960",
+            "offset":"240",
+            "numColumns":"12",
+            "gutterWidth":"20",
+            "columnWidth":"60"
+        },
+        "lg":{
+            "width": "1024",
+            "totalWidth": "960",
+            "offset": "32",
+            "numColumns": "12",
+            "gutterWidth": "20",
+            "columnWidth": "60"
+        },
+        "md": {
+            "width": "768",
+            "totalWidth": "768",
+            "offset": "0",
+            "numColumns": "12",
+            "gutterWidth": "4",
+            "columnWidth": "60"
+        },
+        "sm": {
+            "width": "414",
+            "totalWidth": "414",
+            "offset": "0",
+            "numColumns": "12",
+            "gutterWidth": "5",
+            "columnWidth": "30"
+        },
+        "xs": {
+            "width": "375",
+            "totalWidth": "375",
+            "offset": "0",
+            "numColumns": "12",
+            "gutterWidth": "5",
+            "columnWidth": "20"
+        },
+        "xxs": {
+            "width": "320",
+            "totalWidth": "320",
+            "offset": "0",
+            "numColumns": "12",
+            "gutterWidth": "5",
+            "columnWidth": "22"
+        }
+    }
+}

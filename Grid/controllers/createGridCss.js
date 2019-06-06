@@ -17,7 +17,7 @@ var createGridCss = (()=>{
             justify-content: center;
         }`
     }
-    var createGridContainer = ((calculationResult,units) => {
+    var createGridContainer = (calculationResult,units) => {
         return `.${calculationResult.type}-Grid-Layout .Grid-Container .Grid-row {
             display: grid;
             grid-template-columns: repeat(${calculationResult.numColumns}, 1fr);
@@ -27,15 +27,23 @@ var createGridCss = (()=>{
             padding: 0 ${calculationResult.gutterOnOutside}px;
             grid-gap: ${calculationResult.gutterWidth}px;
             position: fixed;
+        }`
+    }
+    var createGridVisuals = (calculationResult) => {
+        var Visuals = null;
+        if (calculationResult.VisualsType === 'FillGrid'){
+            Visuals = 'border: 1px dashed rgba(0,0,0,0.5);'
         }
-        .${calculationResult.type}-Grid-Layout .Grid-Container .Grid-row .Grid-columns {
-            border: 1px dashed rgba(0,0,0,0.5);
+        if (calculationResult.VisualsType === 'StrokeOutline'){
+            Visuals = 'background-color: rgba(255,0,0,0.2);'
         }
-        `
-    })
-    var init = ((calculationResult)=>{
+        return `.${calculationResult.type}-Grid-Layout .Grid-Container .Grid-row .Grid-columns {
+            ${Visuals}
+        }`
+    }
+    var init = (calculationResult)=>{
         var unitWidth = 'vw'
-        return `${createGridBoxCSS(calculationResult,unitWidth)}${createGridContainer(calculationResult,unitWidth)}`
-    })
+        return `${createGridBoxCSS(calculationResult,unitWidth)}${createGridContainer(calculationResult,unitWidth)}${createGridVisuals(calculationResult)}`
+    }
     return {init:init}
 })();

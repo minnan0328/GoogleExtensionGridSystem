@@ -1,5 +1,5 @@
 var calculationGridSetting = (()=>{
-    let gridSetting = {
+    var gridSetting = {
         availWidth: null,
         availHeight: null,
         gutterWidth: null,
@@ -10,7 +10,7 @@ var calculationGridSetting = (()=>{
         offset: null,
         type: null
     }
-    var init = ((GridData) => {
+    var init = (GridData) => {
         gridSetting = {
             availWidth : GridData.ScreenAvailDPI.availWidth,
             availHeight : GridData.ScreenAvailDPI.availHeight,
@@ -20,25 +20,26 @@ var calculationGridSetting = (()=>{
             numColumns: GridData.setting.numColumns,
             columnWidth: GridData.setting.columnWidth,
             offset: GridData.setting.offset,
-            type: GridData.type
+            type: GridData.type,
+            VisualsType: GridData.VisualsType
         }
         localStorage.setItem('todoList', JSON.stringify(gridSetting))
-        girdFormValueSetting(gridSetting)
+        getFormValueSetting(gridSetting)
         return gridSetting
-    })
-    var girdFormValueSetting = ((gridSetting) => {
+    }
+    var getFormValueSetting = (gridSetting) => {
         var gridData = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')) : gridSetting
-        const girdForm = document.forms['girdForm'];
-        girdForm.elements.availWidth.value = gridData.availWidth
-        girdForm.elements.availHeight.value = gridData.availHeight
-        girdForm.elements.totalWidth.value = gridData.totalWidth
-        girdForm.elements.offset.value = gridData.offset
-        girdForm.elements.numColumns.value = gridData.numColumns
-        girdForm.elements.gutterWidth.value = gridData.gutterWidth
-        girdForm.elements.columnWidth.value = gridData.columnWidth
-    })
+        const getForm = document.forms['girdForm'];
+        getForm.elements.availWidth.value = gridData.availWidth
+        getForm.elements.availHeight.value = gridData.availHeight
+        getForm.elements.totalWidth.value = gridData.totalWidth
+        getForm.elements.offset.value = gridData.offset
+        getForm.elements.numColumns.value = gridData.numColumns
+        getForm.elements.gutterWidth.value = gridData.gutterWidth
+        getForm.elements.columnWidth.value = gridData.columnWidth
+    }
     return {
         init:init,
-        girdFormValueSetting: girdFormValueSetting
+        getFormValueSetting: getFormValueSetting
     }
 })();
