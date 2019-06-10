@@ -2,19 +2,28 @@
     var requestData = [];
     var resizeData = {};
     var isResize = false;
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        requestData.push(request);
-    });
+    var num = 0;
     chrome.runtime.onMessage.addListener(createListener);
     chrome.runtime.onMessage.addListener(addCSSListener);
     chrome.runtime.onMessage.addListener(destroyListener);
     chrome.runtime.onMessage.addListener(removeCSSListener);
     chrome.runtime.onMessage.addListener(getGridType);
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        requestData.push(request);
+        console.log(request)
+        // console.log(request)
+        if (request.method === 'executeScript' && request.greeting) {
+            sendResponse({message: false});
+        }else{
+            sendResponse({message: true});
+        }
+    });
     function createListener(request, sender, sendResponse) {
         if (request.method === "create") {
             var numColumns = request.numColumns || 12;
             var div = document.createElement('div');
-            div.setAttribute("class", `${request.type}-Grid-Layout`);
+            div.id = request.type + num;
+            div.setAttribute("class", `${request.type}-Grid-Layout ${request.VisualsType}`);
             var output = '<div class="Grid-Container"> \
             <div class="Grid-row">';
             for (var i = 0; i < numColumns; i += 1) {
@@ -24,11 +33,10 @@
             </div>';
             div.innerHTML = output;
             document.body.appendChild(div);
-            SketchRespond(1);
         }
     }
     function addCSSListener(request, sender, sendResponse) {
-        if (request.method == "createCss") {
+        if (request.method === "createCss") {
             var customGridStyles = document.createElement('style');
             customGridStyles.id = `${request.type}-grid-style`;
             customGridStyles.appendChild(document.createTextNode(
@@ -38,13 +46,12 @@
         }
     }
     function destroyListener(request, sender, sendResponse) {
-        if (request.method == "destroy" && document.getElementsByClassName(`${request.type}-Grid-Layout`).length) {
+        if (request.method === "removeGrid" && document.getElementsByClassName(`${request.type}-Grid-Layout`).length) {
             document.body.removeChild(document.getElementsByClassName(`${request.type}-Grid-Layout`)[0]);
-            SketchRespond(0);
         }
     }
     function removeCSSListener(request, sender, sendResponse) {
-        if (request.method == "removeCSS") {
+        if (request.method === "removeCSS") {
             var customGridStyles = document.getElementById(`${request.type}-grid-style`);
             if (customGridStyles) {
                 customGridStyles.parentNode.removeChild(customGridStyles);
@@ -62,23 +69,26 @@
                 key: ''
             }
             switch (true) {
-                case (payload.ScreenAvailDPI.availWidth >= 1440):
+                case (payload.ScreenAvailDPI.availWidth >= 1199.99):
                     payload.key = 'xl';
                     break;
-                case (payload.ScreenAvailDPI.availWidth >= 1024):
+                case (payload.ScreenAvailDPI.availWidth >= 991.99):
                     payload.key = 'lg';
                     break;
-                case (payload.ScreenAvailDPI.availWidth >= 768):
+                case (payload.ScreenAvailDPI.availWidth >= 767.99):
                     payload.key = 'md';
                     break;
-                case (payload.ScreenAvailDPI.availWidth >= 414):
+                case (payload.ScreenAvailDPI.availWidth >= 575.99):
                     payload.key = 'sm';
                     break;
-                case (payload.ScreenAvailDPI.availWidth >= 375):
-                    payload.key = 'xs';
+                case (payload.ScreenAvailDPI.availWidth >= 413.99):
+                    payload.key = 'max';
                     break;
-                case (payload.ScreenAvailDPI.availWidth >= 320):
-                    payload.key = 'xxs';
+                case (payload.ScreenAvailDPI.availWidth >= 374.99):
+                    payload.key = 'iphone-xs';
+                    break;
+                case (payload.ScreenAvailDPI.availWidth >= 319.99):
+                    payload.key = 'xs';
                     break;
                 default:
                     payload.key = 'xl';
@@ -86,11 +96,6 @@
             sendResponse(payload);
         }
     }
-    var SketchRespond = (gridStatus) => {
-        chrome.runtime.sendMessage({
-            SketchStatus: gridStatus
-        });
-    };
     // window.addEventListener('resize',() => {
     //     isResize = true;
     //     if (isResize){

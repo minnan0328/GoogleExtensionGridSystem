@@ -1,15 +1,15 @@
 {
     "Sketch":{
-        "xl":{
-            "width":"1440",
-            "totalWidth":"960",
-            "offset":"240",
-            "numColumns":"12",
-            "gutterWidth":"20",
-            "columnWidth":"60"
+        "xl": {
+            "width": "1200",
+            "totalWidth": "960",
+            "offset": "32",
+            "numColumns": "12",
+            "gutterWidth": "20",
+            "columnWidth": "60"
         },
         "lg":{
-            "width": "1024",
+            "width": "992",
             "totalWidth": "960",
             "offset": "32",
             "numColumns": "12",
@@ -25,6 +25,14 @@
             "columnWidth": "60"
         },
         "sm": {
+            "width": "576",
+            "totalWidth": "576",
+            "offset": "0",
+            "numColumns": "12",
+            "gutterWidth": "4",
+            "columnWidth": "60"
+        },
+        "max": {
             "width": "414",
             "totalWidth": "414",
             "offset": "0",
@@ -32,7 +40,7 @@
             "gutterWidth": "5",
             "columnWidth": "30"
         },
-        "xs": {
+        "iphone-xs": {
             "width": "375",
             "totalWidth": "375",
             "offset": "0",
@@ -40,7 +48,7 @@
             "gutterWidth": "5",
             "columnWidth": "20"
         },
-        "xxs": {
+        "xs": {
             "width": "320",
             "totalWidth": "320",
             "offset": "0",

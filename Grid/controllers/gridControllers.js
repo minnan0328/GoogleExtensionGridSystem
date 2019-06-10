@@ -28,43 +28,46 @@ var gridController = (() => {
             fetch(`./../static/data/${payload.type}.json`).then((res) => {
                 return res.json();
             }).then((result) => {
-                var GridData = {
+                calculationGrid(currentTabId,{
                     ScreenAvailDPI: response.ScreenAvailDPI,
                     setting: result[payload.type][response.key],
                     type: payload.type,
                     VisualsType: payload.VisualsType
-                }
-                calculationGrid(currentTabId,GridData)
+                })
             }).catch((error) =>{
                 console.log(error)
             })
         })
     }
-    var calculationGrid = (currentTabId, GridData) => {
-        var calculationResult = calculationGridSetting.init(GridData)
+    var calculationGrid = (currentTabId, payload) => {
+        var calculationResult = calculationGridSetting.init(payload)
         createGrid(currentTabId,calculationResult)
         createGridStyle(currentTabId,calculationResult)
     }
-    var createGrid = (currentTabId,calculationResult) => {
-        SketchRespond(1);
+    var createGrid = (currentTabId, payload) => {
+        // (payload.type === 'Sketch') && SketchRespond(currentTabId,1, payload.type);
+        // (payload.type === 'Bootstrap') && BootstrapRespond(currentTabId,1, payload.type);
         chrome.tabs.sendMessage(currentTabId, {
             method: "create",
-            type: calculationResult.type,
-            numColumns: calculationResult.numColumns
+            type: payload.type,
+            numColumns: payload.numColumns,
+            VisualsType: payload.VisualsType
         })
     }
-    var createGridStyle = (currentTabId,calculationResult) => {
-        var GridCss = createGridCss.init(calculationResult)
+    var createGridStyle = (currentTabId, payload) => {
+        var GridCss = createGridCss.init(payload)
         chrome.tabs.sendMessage(currentTabId, {
             method: "createCss",
-            type: calculationResult.type,
+            type: payload.type,
             css: GridCss
         })
     }
     var removeGrid = (currentTabId, payload) => {
-        SketchRespond(0);
+        console.log(payload)
+        // (payload.type === 'Sketch') && SketchRespond(currentTabId, 0, payload.type);
+        // (payload.type === 'Bootstrap') && BootstrapRespond(currentTabId,0, payload.type);
         chrome.tabs.sendMessage(currentTabId, {
-            method: "destroy",
+            method: "removeGrid",
             type: payload.type
         })
         chrome.tabs.sendMessage(currentTabId, {
@@ -72,9 +75,16 @@ var gridController = (() => {
             type: payload.type
         })
     }
-    var SketchRespond = (gridStatus) => {
-        chrome.runtime.sendMessage({
-            SketchStatus: gridStatus
+    var SketchRespond = (currentTabId,gridStatus, type) => {
+        chrome.tabs.sendMessage(currentTabId ,{
+            SketchStatus: gridStatus,
+            type: type
+        })
+    }
+    var BootstrapRespond = (currentTabId,gridStatus, type) => {
+        chrome.tabs.sendMessage(currentTabId ,{
+            BootstrapStatus: gridStatus,
+            type: type
         })
     }
     return {

@@ -15,6 +15,7 @@ var createGridCss = (()=>{
             width: 100%;
             display: flex;
             justify-content: center;
+            //margin: 0px ${calculationResult.offset};
         }`
     }
     var createGridContainer = (calculationResult,units) => {
@@ -32,10 +33,10 @@ var createGridCss = (()=>{
     var createGridVisuals = (calculationResult) => {
         var Visuals = null;
         if (calculationResult.VisualsType === 'FillGrid'){
-            Visuals = 'border: 1px dashed rgba(0,0,0,0.5);'
+            Visuals = 'background-color: rgba(255,0,0,0.2);'
         }
         if (calculationResult.VisualsType === 'StrokeOutline'){
-            Visuals = 'background-color: rgba(255,0,0,0.2);'
+            Visuals = 'border: 1px dashed rgba(0,0,0,0.5);'
         }
         return `.${calculationResult.type}-Grid-Layout .Grid-Container .Grid-row .Grid-columns {
             ${Visuals}

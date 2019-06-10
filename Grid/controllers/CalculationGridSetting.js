@@ -19,7 +19,7 @@ var calculationGridSetting = (()=>{
             totalWidth: GridData.setting.totalWidth - GridData.setting.gutterWidth,
             numColumns: GridData.setting.numColumns,
             columnWidth: GridData.setting.columnWidth,
-            offset: GridData.setting.offset,
+            offset: (GridData.ScreenAvailDPI.availWidth - GridData.setting.totalWidth) / 2,
             type: GridData.type,
             VisualsType: GridData.VisualsType
         }
@@ -28,15 +28,15 @@ var calculationGridSetting = (()=>{
         return gridSetting
     }
     var getFormValueSetting = (gridSetting) => {
-        var gridData = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')) : gridSetting
+        var GridData = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')) : gridSetting
         const getForm = document.forms['girdForm'];
-        getForm.elements.availWidth.value = gridData.availWidth
-        getForm.elements.availHeight.value = gridData.availHeight
-        getForm.elements.totalWidth.value = gridData.totalWidth
-        getForm.elements.offset.value = gridData.offset
-        getForm.elements.numColumns.value = gridData.numColumns
-        getForm.elements.gutterWidth.value = gridData.gutterWidth
-        getForm.elements.columnWidth.value = gridData.columnWidth
+        getForm.elements.availWidth.value = GridData.availWidth
+        getForm.elements.availHeight.value = GridData.availHeight
+        getForm.elements.totalWidth.value = GridData.totalWidth
+        getForm.elements.offset.value = GridData.offset
+        getForm.elements.numColumns.value = GridData.numColumns
+        getForm.elements.gutterWidth.value = GridData.gutterWidth
+        getForm.elements.columnWidth.value = GridData.columnWidth
     }
     return {
         init:init,
