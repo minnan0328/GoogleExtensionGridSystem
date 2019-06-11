@@ -8,6 +8,7 @@
     chrome.runtime.onMessage.addListener(removeCSSListener);
     chrome.runtime.onMessage.addListener(getGridType);
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        console.log(request)
         requestData.push(request);
         if (request.method === 'executeScript' && request.greeting) {
             sendResponse({message: false});
@@ -21,13 +22,11 @@
             var div = document.createElement('div');
             div.id = request.type;
             div.setAttribute("class", `${request.type}-Grid-Layout ${request.VisualsType}`);
-            var output = '<div class="Grid-Container"> \
-            <div class="Grid-row">';
+            var output = '<div class="Grid-Container"><div class="Grid-row">';
             for (var i = 0; i < numColumns; i += 1) {
                 output += '<div class="Grid-columns"></div>';
             }
-            output += '</div> \
-            </div>';
+            output += '</div></div>';
             div.innerHTML = output;
             document.body.appendChild(div);
         }

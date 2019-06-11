@@ -1,2 +1,92 @@
 body
-    width: 300px
+    width: 100%
+    margin: 0
+    border: 0
+    padding: 0
+    // background-image: linear-gradient(to bottom right,#F7F5E6,#F4F4F4,transparent 50%)
+    // background-image: -webkit-linear-gradient(to bottom right,#F7F5E6,#F4F4F4,transparent 50%)
+    // background-image: -moz-linear-gradient(to bottom right,#F7F5E6,#F4F4F4,transparent 50%)
+    // background-image: -o-linear-gradient(to bottom right,#F7F5E6,#F4F4F4,transparent 50%)
+    background-color: #F4F4F4
+    color: #333A56
+    font-family: PingFangTC-Regular, sans-serif
+    .display-Layout
+        width: 200px
+        padding: 0px 30px 0px 30px
+        .titleBox
+            text-align: center
+        .layoutBox,.screenBox,.setting-columns-box,.screenBox
+            margin-bottom: 20px
+        h3
+            margin: 0 0 10px 0
+            border-bottom: 0.5px solid rgba(20,23,34,0.5)
+            span
+                font-size: 10px
+        .item-checkbox
+            display: flex
+            align-items: center
+            margin: 5px auto
+            p
+                width: 100px
+                margin: 0 50px 0px 0
+                font-size: 14px
+            .checkbox
+                position: relative
+                display: inline-block
+                width: 60px
+                height: 28px
+                input
+                    opacity: 0
+                    width: 0
+                    height: 0
+                    &:checked + .slider
+                        background-image: linear-gradient(to right,#F7F5E6,#F7CE3E)
+                        // background-color: #F7CE3E
+                    &:focus + .slider
+                        box-shadow: 0 0 1px #2196F3
+                    &:checked + .slider:before
+                        -webkit-transform: translateX(28px)
+                        -ms-transform: translateX(28px)
+                        transform: translateX(28px)
+                        content: ""
+                        background-color: #FFF
+                    &:disabled + .slider
+                        opacity: 0.3
+                .slider
+                    position: absolute
+                    cursor: pointer
+                    top: 0
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    border: 2px solid #333A56
+                    background-color: #F4F4F4
+                    -webkit-transition: .4s
+                    transition: .4s
+                    border-radius: 30px
+                    &::before
+                        position: absolute
+                        content: ""
+                        height: 20px
+                        width: 20px
+                        left: 2px
+                        bottom: 2px
+                        -webkit-transition: .4s
+                        transition: .4s
+                        border-radius: 50%
+                        background-color: #F7CE3E
+        .setting-layout-form
+           .setting-columns-box > div,.screenBox > div
+                display: flex
+                align-items: center
+                margin-bottom: 10px
+                input
+                    width: 50px
+                    border: 1px solid #333A56
+                    background: none
+                    &:disabled
+                        opacity: 0.3
+                p
+                    font-size: 14px
+                    width: 100px
+                    margin: 0 50px 0px 0

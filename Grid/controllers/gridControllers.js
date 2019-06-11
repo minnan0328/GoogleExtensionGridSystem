@@ -20,6 +20,7 @@ var gridController = (() => {
     //     }
     // });
     var getGridSetting = (currentTabId, payload) => {
+        console.log(currentTabId, payload)
         chrome.tabs.sendMessage(currentTabId, {
             method: "getGridType",
             type: payload.type,
@@ -63,7 +64,6 @@ var gridController = (() => {
         })
     }
     var removeGrid = (currentTabId, payload) => {
-        console.log(payload)
         // (payload.type === 'Sketch') && SketchRespond(currentTabId, 0, payload.type);
         // (payload.type === 'Bootstrap') && BootstrapRespond(currentTabId,0, payload.type);
         chrome.tabs.sendMessage(currentTabId, {
@@ -88,6 +88,7 @@ var gridController = (() => {
         })
     }
     return {
-        updateGrid: updateGrid
+        updateGrid: updateGrid,
+        getGridSetting: getGridSetting
     }
 })();

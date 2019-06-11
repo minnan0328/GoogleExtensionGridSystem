@@ -1,8 +1,4 @@
 (function () {
-    /**
-     * Used to check the status of the grid.
-     * Whether it is on or off
-     */
     if (document.getElementsByClassName('Sketch-Grid-Layout').length) {
         chrome.runtime.sendMessage({
             SketchStatus: 1,

@@ -4,64 +4,82 @@
     <meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
     <link rel=stylesheet href=./static/css/index.css>
-    <title>grid-system</title>
+    <title>Grid System</title>
 </head>
 
 <body>
     <div class="display-Layout">
-        <div class="item-checkbox">
-            <label for="Sketch">Sketch Layout</label>
-            <input id="Sketch" type="checkbox" name="Sketch"/>
+        <div class="titleBox">
+            <h1>Grid System</h1>
         </div>
-        <div class="item-checkbox">
-            <label for="Bootstrap">Bootstrap Layout</label>
-            <input id="Bootstrap" type="checkbox" name="Bootstrap" />
+        <div class="layoutBox">
+            <h3>Layout</h3>
+            <div class="item-checkbox">
+                <p>Sketch</p>
+                <label for="Sketch" class="checkbox">
+                    <input id="Sketch" type="checkbox" name="Sketch"/>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item-checkbox">
+                <p>Bootstrap</p>
+                <label for="Bootstrap" class="checkbox">
+                    <input id="Bootstrap" type="checkbox" name="Bootstrap" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        <div class="screenBox">
+            <h3>Visuals</h3>
+            <div class="item-checkbox">
+                <p>Fill Grid</p>
+                <label for="FillGrid" class="checkbox">
+                    <input id="FillGrid" type="checkbox" name="FillGrid" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="item-checkbox">
+                <p>Stroke Outline</p>
+                <label for="StrokeOutline" class="checkbox">
+                    <input id="StrokeOutline" type="checkbox" name="StrokeOutline" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
         <div class="setting-layout-form">
             <form id="girdForm" name="girdForm">
                 <div class="setting-columns-box">
-                    <h4>Columns</h4>
+                    <h3>Layout Settings <span>(單位：px)</span></h3>
                     <div>
-                        <label for="totalWidth">Total Width</label>
-                        <input type="number" id="totalWidth" class="totalWidth" value="">
+                        <p for="totalWidth">Total Width</p>
+                        <input type="number" id="totalWidth" name="totalWidth" value="" disabled>
                     </div>
                     <div>
-                        <label for="offset">Offset</label>
-                        <input type="number" id="offset" class="offset" value="">
+                        <p for="offset">Offset</p>
+                        <input type="number" id="offset" name="offset" value="" disabled>
                     </div>
                     <div>
-                        <label for="numColumns">Number of Columns</label>
-                        <input type="number" id="numColumns" class="numColumns" value="">
+                        <p for="numColumns">Number of Columns</p>
+                        <input type="number" id="numColumns" name="numColumns" value="" disabled>
                     </div>
                     <div>
-                        <label for="gutterWidth">Gutter Width</label>
-                        <input type="number" id="gutterWidth" class="gutterWidth" value="">
+                        <p for="gutterWidth">Gutter Width</p>
+                        <input type="number" id="gutterWidth" name="gutterWidth" value="" disabled>
                     </div>
                     <div>
-                        <label for="columnWidth">Column Width</label>
-                        <input type="number" id="columnWidth" class="columnWidth" value="">
-                    </div>
-                </div>
-                <div class="screenBox">
-                    <h4>screen Sizes</h4>
-                    <div>
-                        <label for="availWidth">Width</label>
-                        <input type="number" id="availWidth" class="availWidth" value="">
-                    </div>
-                    <div>
-                        <label for="availHeight">Height</label>
-                        <input type="number" id="availHeight" class="availHeight" value="">
+                        <p for="columnWidth" class="columnWidth">Column Width</p>
+                        <input type="number" id="columnWidth" name="columnWidth" value="" disabled>
                     </div>
                 </div>
                 <div class="screenBox">
-                    <h4>Visuals</h4>
+                    <h3>Screen Sizes</h3>
                     <div>
-                        <label for="FillGrid">Fill Grid</label>
-                        <input type="checkbox" id="FillGrid" class="FillGrid" >
+                        <p for="availWidth">Width</p>
+                        <input type="number" id="availWidth" name="availWidth" value="" disabled>
                     </div>
                     <div>
-                        <label for="StrokeOutline">Stroke Outline</label>
-                        <input type="checkbox" id="StrokeOutline" class="StrokeOutline">
+                        <p for="availHeight">Height</p>
+                        <input type="number" id="availHeight" name="availHeight" value="" disabled>
                     </div>
                 </div>
             </form>
