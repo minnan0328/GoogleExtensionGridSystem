@@ -2,7 +2,6 @@
     var requestData = [];
     var resizeData = {};
     var isResize = false;
-    var num = 0;
     chrome.runtime.onMessage.addListener(createListener);
     chrome.runtime.onMessage.addListener(addCSSListener);
     chrome.runtime.onMessage.addListener(destroyListener);
@@ -10,8 +9,6 @@
     chrome.runtime.onMessage.addListener(getGridType);
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         requestData.push(request);
-        console.log(request)
-        // console.log(request)
         if (request.method === 'executeScript' && request.greeting) {
             sendResponse({message: false});
         }else{
@@ -22,7 +19,7 @@
         if (request.method === "create") {
             var numColumns = request.numColumns || 12;
             var div = document.createElement('div');
-            div.id = request.type + num;
+            div.id = request.type;
             div.setAttribute("class", `${request.type}-Grid-Layout ${request.VisualsType}`);
             var output = '<div class="Grid-Container"> \
             <div class="Grid-row">';

@@ -9,8 +9,8 @@ var popup = (() =>{
   window.addEventListener('load', function () {
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
         currentChromeTabId = tabs[0].id;
-        //Initialize state
         popup.init();
+        chrome.tabs.executeScript(currentChromeTabId, {file: "/executedScripts/gridStatus.js"});
     });
   });
   Sketch.addEventListener('click', function () {
@@ -87,8 +87,8 @@ var popup = (() =>{
       StrokeOutline.disabled = true;
     }
   }
+
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request)
     if (request.SketchStatus !== undefined && request.type === 'Sketch') {
       if (request.SketchStatus === 1 && Sketch.checked === false) {
         Sketch.checked = true;
@@ -139,7 +139,6 @@ var popup = (() =>{
       }else{
         console.log("Design Grid Overlay JS not already injected, injecting now.");
         chrome.tabs.executeScript(currentChromeTabId, {file: "/executedScripts/grid.js"});
-        chrome.tabs.executeScript(currentChromeTabId, {file: "/executedScripts/gridStatus.js"});
       }
     });
   }
