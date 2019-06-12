@@ -26,38 +26,37 @@ chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
     chrome.storage.sync.remove(tabId.toString());
 });
 
-//On keyboard command
-chrome.commands.onCommand.addListener(function (command) {
-    // this function is not scaleable
+//On keyboard command  //快捷鍵-待解決
+// chrome.commands.onCommand.addListener(function (command) {
+//     // this function is not scaleable
 
-    var type = '';
-    switch (command) {
-        case 'Sketch-Layout':
-            type = 'Sketch';
-            break;
-        case 'Bootstrap-Layout':
-            type = 'Sketch';
-            break;
-    }
+//     var method = '';
+//     var type = '';
+//     switch (command) {
+//         case 'Sketch-Layout':
+//             method = 'SketchLayout'
+//             type = 'Sketch';
+//             break;
+//         case 'Bootstrap-Layout':
+//             method = 'BootstrapLayout'
+//             type = 'Bootstrap';
+//             break;
+//     }
 
-    chrome.tabs.query({currentWindow: true,active: true}, function (tabs) {
-        var currentId = tabs[i].id;
-        gridController.getGridSetting(currentId, {
-            type: type,
-            VisualsType: 'StrokeOutline'
-        });
-        // for (var i = 0; i < tabs.length; i++) {
-        //     if (chrome.runtime.lastError) {
-        //         console.warn("Whoops.. " + chrome.runtime.lastError.message);
-        //     } else {
-        //         if (tabs[i]) {
-        //             var currentId = tabs[i].id;
-        //             chrome.tabs.sendMessage(currentId, {
-        //                 method: method,
-        //                 tabId: currentId
-        //             });
-        //         }
-        //     }
-        // }
-    });
-});
+//     chrome.tabs.query({currentWindow: true,active: true}, function (tabs) {
+//         for (var i = 0; i < tabs.length; i++) {
+//             if (chrome.runtime.lastError) {
+//                 console.warn("Whoops.. " + chrome.runtime.lastError.message);
+//             } else {
+//                 if (tabs[i]) {
+//                     var currentId = tabs[i].id;
+//                     chrome.tabs.sendMessage(currentId, {
+//                         method: method,
+//                         type: type,
+//                         tabId: currentId
+//                     });
+//                 }
+//             }
+//         }
+//     });
+// });

@@ -11,16 +11,23 @@ var gridController = (() => {
             removeGrid(currentTabId, payload)
         }
     }
-    // chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    //     if (request.method === 'openResize'){
-    //         console.log('openResize')
-    //         updateGrid(request.tabId, {
-    //             type: request.type
-    //         })
+    //快捷鍵-待解決
+    // chrome.runtime.onConnect.addListener((request, sender, sendResponse) => {
+    //     console.log(request)
+    //     if (request.name === 'SketchLayout' || request.name === 'BootstrapLayout') {
+    //         request.onMessage.addListener(function (response) {
+    //             console.log(response);
+    //             request.postMessage({
+    //                 msg: "OK"
+    //             });
+    //         });
+    //         // getGridSetting(request.tabId,{
+    //         //     type: request.type,
+    //         //     VisualsType: 'StrokeOutline'
+    //         // })
     //     }
     // });
     var getGridSetting = (currentTabId, payload) => {
-        console.log(currentTabId, payload)
         chrome.tabs.sendMessage(currentTabId, {
             method: "getGridType",
             type: payload.type,

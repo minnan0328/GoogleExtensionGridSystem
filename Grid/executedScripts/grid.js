@@ -2,13 +2,13 @@
     var requestData = [];
     var resizeData = {};
     var isResize = false;
+    // chrome.runtime.onMessage.addListener(toggleGridLayout);
     chrome.runtime.onMessage.addListener(createListener);
     chrome.runtime.onMessage.addListener(addCSSListener);
     chrome.runtime.onMessage.addListener(destroyListener);
     chrome.runtime.onMessage.addListener(removeCSSListener);
     chrome.runtime.onMessage.addListener(getGridType);
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        console.log(request)
         requestData.push(request);
         if (request.method === 'executeScript' && request.greeting) {
             sendResponse({message: false});
@@ -16,6 +16,28 @@
             sendResponse({message: true});
         }
     });
+    //快捷鍵-待解決
+    // function toggleGridLayout(request, sender, sendResponse){
+    //     console.log(request)
+    //     if (request.method === 'SketchLayout' || request.method === 'BootstrapLayout') {
+    //         console.log(request)
+    //         var port = chrome.runtime.connect({
+    //             name: 'SketchLayout'
+    //         });
+    //         // port.onDisconnect.addListener(function (response){
+    //         //     console.log(response)
+    //         // })
+    //         port.onMessage.addListener(function (response) {
+    //             console.log(response);
+    //         });
+    //         port.postMessage({
+    //             method: request.method,
+    //             tabId: request.tabId,
+    //             type: request.type,
+    //             VisualsType: 'StrokeOutline'
+    //         });
+    //     }
+    // }
     function createListener(request, sender, sendResponse) {
         if (request.method === "create") {
             var numColumns = request.numColumns || 12;
