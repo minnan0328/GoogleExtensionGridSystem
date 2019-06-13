@@ -3,9 +3,14 @@
 	"name": "Grid System",
 	"description" : "",
 	"version" : "1.0",
+	"icons": {
+		"16": "/static/img/icon_16.png",
+		"48": "/static/img/icon_48.png",
+	   "128": "/static/img/icon_128.png"
+	},
     "browser_action": {
-        "default_title": "",
-        "default_icon": "/static/img/icon.jpg",
+        "default_title": "Grid System",
+        "default_icon": "/static/img/icon_128.png",
         "default_popup": "index.html"
 	},
 	"web_accessible_resources": [
